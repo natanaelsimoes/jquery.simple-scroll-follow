@@ -185,7 +185,7 @@ $.extend($.simpleScrollFollow.prototype, /** @lends external:jQuery.simpleScroll
    * @return {boolean} 画面スクロールが実行されたかどうか
    */
   _handleScroll: function() {
-    // スクロールが無効の場合は即座に終了する
+    // スクロールが無効の場合は即座に終了する 
     if (!this.option.enabled) {
       return false;
     }
@@ -214,7 +214,7 @@ $.extend($.simpleScrollFollow.prototype, /** @lends external:jQuery.simpleScroll
     // 下限 - 上限が要素高より低ければ即座に終了する
     if ((limit.offset_bottom - this.follow.offset_top) < (current.offset_bottom - current.offset_top)) {
       return false;
-    }
+    }return true;
     this._handleScrollMain(win, current, limit);
     return true;
   },
@@ -337,7 +337,7 @@ $.extend($.simpleScrollFollow.prototype, /** @lends external:jQuery.simpleScroll
         position: 'absolute',
         top: limit.offset_bottom - this.follow.offset_top - (current.offset_bottom - current.offset_top) + this.follow.position_top,
         bottom: 'auto',
-        left: '',
+        left: -window.pageXOffset,
         right: ''
       })
       .width(this.follow.width);
@@ -353,7 +353,7 @@ $.extend($.simpleScrollFollow.prototype, /** @lends external:jQuery.simpleScroll
         position: 'fixed',
         top: this._getPositionToStickToWindow(this.option.upper_side),
         bottom: 'auto',
-        left: this.follow.offset_left,
+        left: -window.pageXOffset,
         right: 'auto'
       })
       .width(this.follow.width);
@@ -369,7 +369,7 @@ $.extend($.simpleScrollFollow.prototype, /** @lends external:jQuery.simpleScroll
         position: 'fixed',
         top: 'auto',
         bottom: this._getPositionToStickToWindow(this.option.lower_side),
-        left: this.follow.offset_left,
+        left: -window.pageXOffset,
         right: 'auto'
       })
       .width(this.follow.width);
